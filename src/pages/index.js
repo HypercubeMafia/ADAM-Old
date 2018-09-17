@@ -21,6 +21,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 
+import { Link } from 'gatsby';
+
 const styles = {
   card: {
     width: 200
@@ -91,13 +93,13 @@ class MachineCard extends React.Component {
             <MoreHorizIcon />
           </IconButton>
         </CardActions>
-        <CardActionArea>
-          <CardContent>
+       <Link to="/dfa_home/"> <CardActionArea>
+          <CardContent >
             <Typography style={styles.preview_pane} color="textSecondary">
               Click me to get to the machine.
             </Typography>
           </CardContent>
-        </CardActionArea>
+        </CardActionArea></Link>
       </Card>
       </div>
     );
