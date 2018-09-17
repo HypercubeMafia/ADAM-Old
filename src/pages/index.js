@@ -10,9 +10,9 @@ import IconButton from "@material-ui/core/IconButton";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from "@material-ui/core/Typography";
-
 import AddIcon from '@material-ui/icons/Add';
-
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 const styles = {
   card: {
     width: 200
@@ -40,16 +40,46 @@ var machines = [
 var colors = { dfa: "#7e57c2", nfa: "#ffa726", tm: "#42a5f5" };
 
 class MachineCard extends React.Component {
+  state = {
+    anchorEl: null,
+  };
+
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
   render() {
+    const { anchorEl } = this.state;
+ 
     return (
+      <div>
+      <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={this.handleClose}
+        >
+          <MenuItem onClick={this.handleClose}>Duplicate</MenuItem>
+          <MenuItem onClick={this.handleClose}>Delete</MenuItem>
+        </Menu>
       <Card style={styles.card}>
-        <CardActions
+	
+        <CardActions 
           style={{ ...styles.banner, backgroundColor: colors[this.props.type] }}
         >
           <Typography variant="body2">
             {this.props.title.toUpperCase()}
           </Typography>
-          <IconButton style={styles.option} onClick={null}>
+          <IconButton 
+	    style={styles.option} 
+	    aria-owns={anchorEl ? 'simple-menu' : null}
+            aria-haspopup="true"
+            onClick={this.handleClick}
+	  >
             <MoreHorizIcon />
           </IconButton>
         </CardActions>
@@ -61,6 +91,7 @@ class MachineCard extends React.Component {
           </CardContent>
         </CardActionArea>
       </Card>
+      </div>
     );
   }
 }
