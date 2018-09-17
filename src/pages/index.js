@@ -1,18 +1,26 @@
 import React from "react";
+import AddIcon from '@material-ui/icons/Add';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from "@material-ui/core/Typography";
-import AddIcon from '@material-ui/icons/Add';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+
 const styles = {
   card: {
     width: 200
@@ -129,15 +137,72 @@ class MachineSelectToolbar extends React.Component {
   }
 }
 
+class NewMachineDialog extends React.Component {
+  render() {
+    const { classes, onClose, selectedValue, ...other } = this.props;
+
+    return (
+      <Dialog onClose={this.props.onClose} aria-labelledby="simple-dialog-title" {...other}>
+        <DialogTitle id="simple-dialog-title">Select a Machine Type</DialogTitle>
+        <div>
+          <List>
+            <ListItem button onClick={null}>
+              <ListItemAvatar>
+                <Avatar style={{backgroundColor: colors["dfa"]}} children="DFA"/>
+              </ListItemAvatar>
+              <ListItemText primary="New DFA"/>
+            </ListItem>
+            <ListItem button onClick={null}>
+              <ListItemAvatar>
+              <Avatar style={{backgroundColor: colors["nfa"]}} children="NFA"/>
+              </ListItemAvatar>
+              <ListItemText primary="New NFA"/>
+            </ListItem>
+            <ListItem button onClick={null}>
+              <ListItemAvatar>
+              <Avatar style={{backgroundColor: colors["tm"]}} children="TM"/>
+              </ListItemAvatar>
+              <ListItemText primary="New Turing Machine"/>
+            </ListItem>
+          </List>
+        </div>
+      </Dialog>
+    );
+  }
+}
+
+class AddMachineButton extends React.Component {
+  state = { open: false };
+
+  handleOpen = () => {
+    this.setState({ open: true, });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  render() {
+    return (
+      <div>
+        <Button onClick={this.handleOpen} variant="fab" color="primary"
+                style={{ right: 20, bottom: 20, position: 'fixed'}}>
+          <AddIcon />
+        </Button>
+        <NewMachineDialog open={this.state.open} onClose={this.handleClose}/>
+      </div>
+    );
+  }
+}
+
+
 class MachineSelectPage extends React.Component {
   render() {
     return (
         <div>
           <MachineSelectToolbar/>
           <CardGrid/>
-          <Button variant="fab" color="primary" aria-label="Add" style={{marginLeft: "auto", marginTop: "auto"}}>
-            <AddIcon />
-          </Button>
+          <AddMachineButton/>
         </div>
     );
   }
