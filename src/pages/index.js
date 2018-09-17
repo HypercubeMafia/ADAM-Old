@@ -127,9 +127,6 @@ class MachineSelectToolbar extends React.Component {
               <Typography variant="title" color="inherit" style={{flexGrow: 1}}>
                 Select a Machine
               </Typography>
-              <Button color="inherit">New DFA</Button>
-              <Button color="inherit">New NFA</Button>
-              <Button color="inherit">New TM</Button>
             </Toolbar>
           </AppBar>
         </div>
