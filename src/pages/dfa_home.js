@@ -5,15 +5,13 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 
-import { Link } from 'gatsby';
-
 class ButtonAppBar extends React.Component {
   render(){
   return (
     <div>
       <AppBar position="static">
         <Toolbar>
-          <IconButton color="inherit" aria-label="Menu">
+          <IconButton color="inherit" aria-label="Menu" href="/">
             <ArrowBack />
           </IconButton>
           <Button color="inherit" href="/dfa_edit/">Edit</Button>

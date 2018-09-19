@@ -26,10 +26,10 @@ class editpage extends React.Component {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <IconButton color="inherit" aria-label="Menu">
+          <IconButton color="inherit" aria-label="Menu" href="/dfa_home/">
             <ArrowBack />
           </IconButton>
-          <Button color="inherit">Run</Button>
+          <Button color="inherit" href="/dfa_run/">Run</Button>
         </Toolbar>
       </AppBar>
     </div>
@@ -38,4 +38,3 @@ class editpage extends React.Component {
 }
 
 export default editpage;
-
