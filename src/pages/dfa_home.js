@@ -5,7 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import ArrowBack from '@material-ui/icons/ArrowBack';
 
 const styles = {
   root: {
@@ -20,14 +20,14 @@ const styles = {
   },
 };
 
-function ButtonAppBar(props) {
-  const { classes } = props;
+class ButtonAppBar extends React.Component {
+  render(){
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static">
         <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
+          <IconButton color="inherit" aria-label="Menu">
+            <ArrowBack />
           </IconButton>
           <Button color="inherit">Edit</Button>
           <Button color="inherit">Run</Button>
@@ -36,9 +36,6 @@ function ButtonAppBar(props) {
     </div>
   );
 }
+}
 
-ButtonAppBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ButtonAppBar);
+export default ButtonAppBar;
